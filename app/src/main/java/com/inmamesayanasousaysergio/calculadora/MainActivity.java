@@ -3,11 +3,14 @@ package com.inmamesayanasousaysergio.calculadora;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.mariuszgromada.math.mxparser.*;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.EditText;
+
+import javax.xml.xpath.XPathExpression;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
         updateText("9");
     }
 
-    public void CEBTN(View view) {
+    public void ceBTN(View view) {
         int cursorPos = display.getSelectionStart();
         int textLen = display.getText().length();
-        
+
         if(cursorPos != 0 && textLen != 0) {
             SpannableStringBuilder selection = (SpannableStringBuilder) display.getText();
             selection.replace(cursorPos- 1, cursorPos, "");
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void CBTN(View view) {
+    public void cBTN(View view) {
         updateText("");
     }
 
@@ -127,22 +130,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void equalBTN(View view) {
+        String userExp = display.getText().toString();
 
+        userExp = userExp.replaceAll("÷", "/");
+        userExp = userExp.replaceAll("×", "*");
+
+        Expression exp = new Expression(userExp);
+
+        String result = String.valueOf(exp.calculate());
+
+        display.setText(result);
+        display.setSelection(result.length());
     }
 
     public void plusminusBTN(View view) {
         updateText("-");
     }
 
-    public void MSBTN(View view) {
+    public void msBTN(View view) {
 
     }
 
-    public void MRBTN(View view) {
+    public void mrBTN(View view) {
 
     }
 
-    public void MCBTN(View view) {
+    public void mcBTN(View view) {
 
     }
 

@@ -27,11 +27,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/circle"
                 android:backgroundTint="#0097FF"
-                android:onClick="MCBTN"
+                android:onClick="mcBTN"
                 android:text="@string/memoryclear"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                tools:targetApi="lollipop" />
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/MRBTN"
@@ -42,7 +41,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/circle"
                 android:backgroundTint="#0097FF"
-                android:onClick="MRBTN"
+                android:onClick="mrBTN"
                 android:text="@string/memoryrecupere"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
@@ -56,7 +55,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/circle"
                 android:backgroundTint="#0097FF"
-                android:onClick="MSBTN"
+                android:onClick="msBTN"
                 android:text="@string/memorysave"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
@@ -75,7 +74,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/circle"
                 android:backgroundTint="#DD2C00"
-                android:onClick="CEBTN"
+                android:onClick="ceBTN"
                 android:text="@string/cleare"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
@@ -89,7 +88,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/circle"
                 android:backgroundTint="#DD2C00"
-                android:onClick="CBTN"
+                android:onClick="cBTN"
                 android:text="@string/clear"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
@@ -358,13 +357,12 @@
         android:layout_marginTop="30dp"
         android:autofillHints="false"
         android:gravity="end"
+        android:hint="@string/display"
         android:inputType="none"
-        android:text="@string/display"
         android:textAlignment="textEnd"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
