@@ -3,11 +3,11 @@ package com.inmamesayanasousaysergio.calculadora;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.mariuszgromada.math.mxparser.*;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import javax.xml.xpath.XPathExpression;
@@ -15,12 +15,15 @@ import javax.xml.xpath.XPathExpression;
 public class MainActivity extends AppCompatActivity {
 
     private EditText display;
+    private Calcular calcular;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        calcular = new Calcular();
 
         display = findViewById(R.id.input);
         display.setShowSoftInputOnFocus(false);
@@ -49,16 +52,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void zeroBTN(View view) {
-        updateText("0");
+    public void zeroBTN(View view) { updateText("0");
     }
 
-    public void oneBTN(View view) {
-        updateText("1");
+    public void oneBTN(View view) { updateText("1");
     }
 
-    public void twoBTN(View view) {
-        updateText("2");
+    public void twoBTN(View view) { updateText("2");
     }
 
     public void threeBTN(View view) {
@@ -102,27 +102,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cBTN(View view) {
-        updateText("");
+        display.setText("");
     }
 
     public void exponentBTN(View view) {
-        updateText("^");
+        calcular.setOp('e');
+        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        display.setText("");
     }
 
     public void divideBTN(View view) {
-        updateText("÷");
+        calcular.setOp('e');
+        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        display.setText("");
     }
 
     public void multiplyBTN(View view) {
-        updateText("×");
+        calcular.setOp('*');
+        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        display.setText("");
     }
 
     public void addBTN(View view) {
-        updateText("+");
+        calcular.setOp('+');
+        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        display.setText("");
     }
 
     public void subtractBTN(View view) {
-        updateText("-");
+        calcular.setOp('-');
+        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        display.setText("");
     }
 
     public void pointBTN(View view) {
@@ -130,21 +140,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void equalBTN(View view) {
-        String userExp = display.getText().toString();
-
-        userExp = userExp.replaceAll("÷", "/");
-        userExp = userExp.replaceAll("×", "*");
-
-        Expression exp = new Expression(userExp);
-
-        String result = String.valueOf(exp.calculate());
-
-        display.setText(result);
-        display.setSelection(result.length());
-    }
-
-    public void plusminusBTN(View view) {
-        updateText("-");
+        calcular.setNum2(Float.parseFloat(display.getText().toString()));
+        calcular.realizarOperacion();
+        display.setText(String.valueOf(calcular.getNum1()));
     }
 
     public void msBTN(View view) {
@@ -152,10 +150,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mrBTN(View view) {
-
-    }
-
-    public void mcBTN(View view) {
 
     }
 
