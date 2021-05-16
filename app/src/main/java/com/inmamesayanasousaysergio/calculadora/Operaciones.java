@@ -1,11 +1,11 @@
 package com.inmamesayanasousaysergio.calculadora;
 
-public class Calcular {
+public class Operaciones {
 
     private char op;
     private float num1;
     private float num2;
-    private float m;
+    private float m = 0;
 
     public void realizarOperacion() {
         switch (op)
@@ -21,6 +21,9 @@ public class Calcular {
                 break;
             case '/':
                 num1 = num1 / num2;
+                break;
+            case 'e':
+                num1 = (float) Math.pow(num1, num2);
                 break;
         }
     }

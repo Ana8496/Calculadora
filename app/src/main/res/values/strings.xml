@@ -24,6 +24,7 @@
     <string name="plusminus">+/-</string>
     <string name="memorysave">MS</string>
     <string name="memoryrecupere">MR</string>
+    <string name="restart">R</string>
 
     <string name="display">Enter in a value</string>
 

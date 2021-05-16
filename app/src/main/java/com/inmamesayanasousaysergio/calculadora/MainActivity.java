@@ -3,19 +3,21 @@ package com.inmamesayanasousaysergio.calculadora;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-
-import javax.xml.xpath.XPathExpression;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText display;
-    private Calcular calcular;
+    private Operaciones operaciones;
+    private boolean error = false;
+    private TextView m;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -23,7 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        calcular = new Calcular();
+        operaciones = new Operaciones();
+
+        m = findViewById(R.id.m);
+        m.setVisibility(View.INVISIBLE);
 
         display = findViewById(R.id.input);
         display.setShowSoftInputOnFocus(false);
@@ -52,40 +57,83 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void zeroBTN(View view) { updateText("0");
+    public void zeroBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
+        updateText("0");
     }
 
-    public void oneBTN(View view) { updateText("1");
+    public void oneBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
+        updateText("1");
     }
 
-    public void twoBTN(View view) { updateText("2");
+    public void twoBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
+        updateText("2");
     }
 
     public void threeBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
         updateText("3");
     }
 
     public void fourBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
         updateText("4");
     }
 
     public void fiveBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
         updateText("5");
     }
 
     public void sixBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
         updateText("6");
     }
 
     public void sevenBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
         updateText("7");
     }
 
     public void eightBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
         updateText("8");
     }
 
     public void nineBTN(View view) {
+        if(error == true) {
+            display.setText("");
+            error = false;
+        }
         updateText("9");
     }
 
@@ -106,32 +154,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void exponentBTN(View view) {
-        calcular.setOp('e');
-        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        operaciones.setOp('e');
+        operaciones.setNum1(Float.parseFloat(display.getText().toString()));
         display.setText("");
     }
 
     public void divideBTN(View view) {
-        calcular.setOp('e');
-        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        operaciones.setOp('/');
+        operaciones.setNum1(Float.parseFloat(display.getText().toString()));
         display.setText("");
     }
 
     public void multiplyBTN(View view) {
-        calcular.setOp('*');
-        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        operaciones.setOp('*');
+        operaciones.setNum1(Float.parseFloat(display.getText().toString()));
         display.setText("");
     }
 
     public void addBTN(View view) {
-        calcular.setOp('+');
-        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        operaciones.setOp('+');
+        operaciones.setNum1(Float.parseFloat(display.getText().toString()));
         display.setText("");
     }
 
     public void subtractBTN(View view) {
-        calcular.setOp('-');
-        calcular.setNum1(Float.parseFloat(display.getText().toString()));
+        operaciones.setOp('-');
+        operaciones.setNum1(Float.parseFloat(display.getText().toString()));
         display.setText("");
     }
 
@@ -140,17 +188,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void equalBTN(View view) {
-        calcular.setNum2(Float.parseFloat(display.getText().toString()));
-        calcular.realizarOperacion();
-        display.setText(String.valueOf(calcular.getNum1()));
+        operaciones.setNum2(Float.parseFloat(display.getText().toString()));
+        if((operaciones.getOp()) == '/' && operaciones.getNum2() == 0) {
+            error = true;
+            display.setText("No se puede dividir entre cero");
+        } else {
+            operaciones.realizarOperacion();
+            display.setText(String.valueOf(operaciones.getNum1()));
+            display.setSelection(display.getText().length());
+        }
     }
 
     public void msBTN(View view) {
-
+        m.setVisibility(View.VISIBLE);
+        operaciones.setM(Float.parseFloat(display.getText().toString()));
     }
 
     public void mrBTN(View view) {
+        m.setVisibility(View.INVISIBLE);
+        display.setText(String.valueOf(operaciones.getM()));
+        display.setSelection(display.getText().length());
+    }
 
+    public void rBTN(View view) {
+        Intent intent=new Intent();
+        intent.setClass(this, this.getClass());
+        //llamamos a la actividad
+        this.startActivity(intent);
+        //finalizamos la actividad actual
+        this.finish();
     }
 
 }

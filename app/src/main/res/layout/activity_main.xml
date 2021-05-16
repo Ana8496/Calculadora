@@ -45,6 +45,20 @@
                 android:text="@string/memorysave"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/R"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/circle"
+                android:backgroundTint="#FFBD00"
+                android:onClick="rBTN"
+                android:text="@string/restart"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
         </TableRow>
 
         <TableRow
@@ -327,7 +341,7 @@
         android:id="@+id/input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:autofillHints="false"
         android:gravity="end"
         android:hint="@string/display"
@@ -338,4 +352,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="M"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
